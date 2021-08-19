@@ -1,6 +1,7 @@
 version: '3.4'
 
 services:
+
   catalog.api:
     container_name: catalog.api
     environment:
@@ -19,10 +20,80 @@ services:
     depends_on:
       - catalogdb
 
+
+  basket.api:
+    container_name: basket.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - "RedisSettings__ConnectionString=basket:6379"   
+    ports:
+      - "8001:80"
+      
+    depends_on:
+      - basketdb
+
+
+  discount.api:
+    container_name: discount.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - "PostgresSettings__ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=admin1234;"
+    ports:
+      - "8002:80"
+    depends_on:
+      - discountdb
+
+####################### Utilities
+  
+  portainer:
+    container_name: portainer
+    restart: always
+    ports:
+      - "8100:80"
+
+#    volumes:
+#      - portainer_data:/data
+#      - /var/run/docker.sock:/var/run/docker.sock
+  
+  pgadmnin:
+    container_name: pgadmnin
+    environment:
+      - PGADMNIN_DEFAULT_EMAIL=admin@pgadmin.com
+      - PGADMNIN_DEFAULT_PASSWORD=admin1234
+    restart: always
+    ports:
+    - "8200:80"
+#    volumes:
+#    - pgadmin_data:/root/.pgadmnin
+
+##################### Database
+  
   catalogdb: 
     container_name: catalogdb
     restart: always
     ports:
       - "27017:27017"
-    volumes:
-      - mongo_data:/data/db
+#    volumes:
+#      - mongo_data:/data/db
+
+
+  basketdb:
+    container_name: basketdb
+    restart: always
+    ports:
+      - "6379:6379"
+
+
+  discountdb:
+    container_name: discountdb
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin1234
+      - POSTGRES_DB=DiscountDb
+    restart: always
+    ports:
+      - "5432:5432"
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data/
