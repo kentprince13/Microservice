@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Basket.Api.Grpc;
 using Basket.Api.Repositories;
+using Discount.Grpc.Protos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -38,6 +40,13 @@ namespace Basket.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "Basket.Api", Version = "v1"});
             });
+
+            services.AddAutoMapper(typeof(Startup));
+            services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(c =>
+            {
+                c.Address = new Uri( "http://localhost:8003");
+            });
+            services.AddScoped<IDiscountGrpcService,DiscountGrpcService>();
         } 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

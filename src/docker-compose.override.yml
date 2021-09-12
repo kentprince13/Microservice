@@ -39,7 +39,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
-      - "PostgresSettings__ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=admin1234;"
+      - "DiscountSettings__ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=admin1234;"
     ports:
       - "8002:80"
     depends_on:
@@ -51,22 +51,22 @@ services:
     container_name: portainer
     restart: always
     ports:
-      - "8100:80"
+      - "8100:8000"
+      - "8110:9000"
+    volumes:
+      - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
 
-#    volumes:
-#      - portainer_data:/data
-#      - /var/run/docker.sock:/var/run/docker.sock
-  
-  pgadmnin:
-    container_name: pgadmnin
+  pgadmin:
+    container_name: pgadmin
     environment:
-      - PGADMNIN_DEFAULT_EMAIL=admin@pgadmin.com
-      - PGADMNIN_DEFAULT_PASSWORD=admin1234
+      - PGADMIN_DEFAULT_EMAIL=admin@pgadmin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin1234
     restart: always
     ports:
-    - "8200:80"
-#    volumes:
-#    - pgadmin_data:/root/.pgadmnin
+        - "8200:80"
+    volumes:
+      - pgadmin_data:/root/.pgadmin
 
 ##################### Database
   
@@ -75,8 +75,8 @@ services:
     restart: always
     ports:
       - "27017:27017"
-#    volumes:
-#      - mongo_data:/data/db
+    volumes:
+      - mongo_data:/data/db
 
 
   basketdb:
@@ -95,5 +95,6 @@ services:
     restart: always
     ports:
       - "5432:5432"
-#    volumes:
-#      - postgres_data:/var/lib/postgresql/data/
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+     
