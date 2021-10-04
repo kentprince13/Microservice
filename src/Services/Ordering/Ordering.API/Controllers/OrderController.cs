@@ -1,15 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using MediatR;
-using Ordering.Application.Features.Orders.Commands.CheckOutCrder;
-using Ordering.Application.Features.Orders.Commands.DeleteOrder;
-using Ordering.Application.Features.Orders.Commands.UpdateOrder;
-using Ordering.Application.Features.Orders.Queries.GetOrdersList;
+using Ordering.Applications.Features.Orders.Commands.CheckOutOrder;
+using Ordering.Applications.Features.Orders.Commands.DeleteOrder;
+using Ordering.Applications.Features.Orders.Commands.UpdateOrder;
+using Ordering.Applications.Features.Orders.Queries.GetOrdersList;
 
 namespace Ordering.API.Controllers
 {

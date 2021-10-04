@@ -89,27 +89,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationServiceRegistration.cs" />
-    <Compile Include="Behaviors\UnhandledExceptionBehavior.cs" />
-    <Compile Include="Behaviors\ValidationBehaviour.cs" />
-    <Compile Include="Contracts\Infrastructure\IEmailService.cs" />
-    <Compile Include="Contracts\Persistence\IAsyncRepository.cs" />
-    <Compile Include="Contracts\Persistence\IOrderRepository.cs" />
-    <Compile Include="Exceptions\NotFoundException.cs" />
-    <Compile Include="Exceptions\ValidationException.cs" />
-    <Compile Include="Features\Orders\Commands\CheckOutCrder\CheckOutCommandHandler.cs" />
-    <Compile Include="Features\Orders\Commands\CheckOutCrder\CheckOutOrderCommand.cs" />
-    <Compile Include="Features\Orders\Commands\CheckOutCrder\CheckOutOrderCommandValidator.cs" />
-    <Compile Include="Features\Orders\Commands\DeleteOrder\DeleteOrderCommand.cs" />
-    <Compile Include="Features\Orders\Commands\DeleteOrder\DeleteOrderCommandHandler.cs" />
-    <Compile Include="Features\Orders\Commands\UpdateOrder\UpdateOrderCommand.cs" />
-    <Compile Include="Features\Orders\Commands\UpdateOrder\UpdateOrderCommandHandler.cs" />
-    <Compile Include="Features\Orders\Commands\UpdateOrder\UpdateOrderCommandValidator.cs" />
-    <Compile Include="Features\Orders\Queries\GetOrdersList\GetOrderListQuery.cs" />
-    <Compile Include="Features\Orders\Queries\GetOrdersList\GetOrderListQueryHandler.cs" />
-    <Compile Include="Features\Orders\Queries\GetOrdersList\OrdersVm.cs" />
-    <Compile Include="Mappings\MappingProfile.cs" />
-    <Compile Include="Models\Email.cs" />
-    <Compile Include="Models\EmailSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -118,7 +97,19 @@
       <Name>Ordering.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Behaviors" />
+    <Folder Include="Contracts\Infrastructure" />
+    <Folder Include="Contracts\Persistence" />
+    <Folder Include="Exceptions" />
+    <Folder Include="Features" />
+    <Folder Include="Features\Orders\Commands\CheckOutCrder" />
+    <Folder Include="Features\Orders\Commands\DeleteOrder" />
+    <Folder Include="Features\Orders\Commands\UpdateOrder" />
+    <Folder Include="Features\Orders\Queries\GetOrdersList" />
+    <Folder Include="Mappings" />
+    <Folder Include="Models" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Ordering.Application.Contracts.Infrastructure;
-using Ordering.Application.Models;
+using Ordering.Applications.Models;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 

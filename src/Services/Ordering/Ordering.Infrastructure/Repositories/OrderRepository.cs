@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Ordering.Application.Contracts.Persistence;
-using Ordering.Domain.Entitties;
+using Ordering.Applications.Contracts.Persistence;
+using Ordering.Domains.Entities;
 using Ordering.Infrastructure.Persistence;
 
 namespace Ordering.Infrastructure.Repositories
