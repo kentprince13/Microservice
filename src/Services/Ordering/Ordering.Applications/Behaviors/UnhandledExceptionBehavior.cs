@@ -18,7 +18,13 @@ namespace Ordering.Applications.Behaviors
         {
             try
             {
-              return  await next();
+                return await next();
+            }
+            catch (ApplicationException e)
+            {
+                var requestName = typeof(T).Name;
+                _logger.LogError(e, "Application Request: Unhandled Exception for Request {Name} {@Request}", requestName, request);
+                throw;
             }
             catch (Exception e)
             {
