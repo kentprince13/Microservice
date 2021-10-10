@@ -5,12 +5,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
-using Ordering.Applications.Exceptions;
 using ValidationException = Ordering.Applications.Exceptions.ValidationException;
 
 namespace Ordering.Applications.Behaviors
 {
-    public class ValidationBehaviour<TRequest,TResponse> :IPipelineBehavior<TRequest,TResponse>
+    public class ValidationBehaviour<TRequest,TResponse> :IPipelineBehavior<TRequest,TResponse> where TRequest : IRequest<TResponse>
     {
         private readonly IEnumerable<IValidator<TRequest>> _validator;
 
@@ -29,7 +28,8 @@ namespace Ordering.Applications.Behaviors
 
                 if (failures.Count != 0) throw new ValidationException(failures);
             }
-            throw new NotImplementedException();
+
+            return await next();
         }
     }
 }
