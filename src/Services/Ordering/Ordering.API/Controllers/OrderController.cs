@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Cors;
 using Ordering.Applications.Features.Orders.Commands.CheckOutOrder;
 using Ordering.Applications.Features.Orders.Commands.DeleteOrder;
 using Ordering.Applications.Features.Orders.Commands.UpdateOrder;
@@ -13,6 +14,7 @@ namespace Ordering.API.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
+   // [DisableCors]
     public class OrderController : ControllerBase
     {
         private readonly IMediator _mediator;

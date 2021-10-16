@@ -50,7 +50,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - "ConnectionStrings:OrderingConnectionString=Server=orderingdb;Database=OrderDb;User Id=sa;Password=SwN12345678"  
+      - "ConnectionStrings__OrderingConnectionString=Server=orderingdb;Database=OrderDb;User Id=root;Password=dahPRINCE@13"  
     ports:
       - "8004:80"
     volumes:
@@ -124,9 +124,22 @@ services:
   orderdb:
     container_name: orderingdb
     environment:
-        SA_PASSWORD: "SwN12345678"
-        ACCEPT_EULA: "Y"
+        MYSQL_ROOT_PASSWORD: dahPRINCE@13
+        MYSQL_USER: newuser
+        MYSQL_PASSWORD: dahPRINCE@13
+        MYSQL_DATABASE: OrderDb
     restart: always
     ports:
-        - "1433:1433"
+        - "3307:3306"
+    volumes:
+        - mysql_data:/var/lib/mysql/
+
+  #orderdb:
+  #  container_name: orderingdb
+  #  environment:
+  #      SA_PASSWORD: "SwN12345678"
+  #      ACCEPT_EULA: "Y"
+  #  restart: always
+  #  ports:
+  #      - "1433:1433"
 

@@ -11,7 +11,7 @@ using Ordering.Domains.Entities;
 
 namespace Ordering.Applications.Features.Orders.Commands.CheckOutOrder
 {
-    public class CheckOutCommandHandler: IRequestHandler<CheckOutOrderCommand,int>
+    public class CheckOutCommandHandler: IRequestHandler<CheckOutOrderCommand,long>
     {
         private readonly IMapper _mapper;
         private readonly IOrderRepository _orderRepository;
@@ -26,7 +26,7 @@ namespace Ordering.Applications.Features.Orders.Commands.CheckOutOrder
             _emailService = emailService;
             _logger = logger;
         }
-        public async Task<int> Handle(CheckOutOrderCommand request, CancellationToken cancellationToken)
+        public async Task<long> Handle(CheckOutOrderCommand request, CancellationToken cancellationToken)
         {
             var orderEntity = _mapper.Map<Order>(request);
             var newOrder = await _orderRepository.AddAsync(orderEntity);
