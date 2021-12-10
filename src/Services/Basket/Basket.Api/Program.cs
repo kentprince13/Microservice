@@ -13,12 +13,7 @@ namespace Basket.Api
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build()
-                // .MigrateDatabase<OrderContext>((context, service) =>
-                // {
-                //
-                // })
-                .Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

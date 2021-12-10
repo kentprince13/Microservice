@@ -1,19 +1,16 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Net;
 using Basket.Api.Grpc;
 using Basket.Api.Repositories;
 using Discount.Grpc.Protos;
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using StackExchange.Redis;
 
 namespace Basket.Api
 {
@@ -33,20 +30,33 @@ namespace Basket.Api
             services.AddStackExchangeRedisCache(option =>
             {
                 option.Configuration = Configuration.GetValue<string>("RedisSettings:ConnectionString");
-                option.ConfigurationOptions.AbortOnConnectFail = false;
+               
             });
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "Basket.Api", Version = "v1"});
             });
+     
 
             services.AddAutoMapper(typeof(Startup));
             services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(c =>
             {
-                c.Address = new Uri( "http://localhost:8003");
+                c.Address = new Uri(Configuration["GrpcSettings:DiscountUrl"]);
             });
             services.AddScoped<IDiscountGrpcService,DiscountGrpcService>();
+
+            var x = Configuration["EventBusSettings:HostAddress"];
+
+            services.AddMassTransit(c =>
+            {
+                c.UsingRabbitMq((ctx, cfg) =>
+                {
+                    cfg.Host(Configuration["EventBusSettings:HostAddress"]);
+                });
+            });
+            services.AddMassTransitHostedService();
+            services.AddAutoMapper(typeof(Startup));
         } 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
