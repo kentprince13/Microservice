@@ -1,7 +1,7 @@
 {
 
   "Routes": [
-    // Catalog API Description
+    // Catalog API Descriptions
     {
       "DownstreamPathTemplate": "/api/v1/catalog",
       "DownstreamScheme": "http",
@@ -39,7 +39,7 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
 
-    //Basket API Description
+    //Basket API Descriptions
     {
       "DownstreamPathTemplate": "/api/v1/Basket/{userName}",
       "DownstreamScheme": "http",
@@ -84,7 +84,7 @@
       }
     },
 
-    //Discount API Description
+    //Discount API Descriptions
     {
       "DownstreamPathTemplate": "/api/v1/Discount/{productName}",
       "DownstreamScheme": "http",
@@ -110,7 +110,7 @@
       "UpstreamHttpMethod": [ "PUT", "POST" ]
     },
 
-    //Order API Description
+    //Order API Descriptions
     {
       "DownstreamPathTemplate": "/api/v1/Order/{userName}",
       "DownstreamScheme": "http",
