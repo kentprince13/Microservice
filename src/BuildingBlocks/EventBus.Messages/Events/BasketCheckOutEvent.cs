@@ -19,6 +19,7 @@ namespace EventBus.Messages.Events
         public string Country { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
+        
 
         // Payment
         public string CardName { get; set; }

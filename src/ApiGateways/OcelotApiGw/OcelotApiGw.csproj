@@ -4,6 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'IIS Express' " />
   <ItemGroup>
     <PackageReference Include="ocelot" Version="17.0.0" />
   </ItemGroup>

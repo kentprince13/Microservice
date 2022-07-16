@@ -22,11 +22,11 @@
     "OcelotApiGw": {
       "commandName": "Project",
       "launchBrowser": true,
+      "applicationUrl": "http://localhost:5010",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Local"
       },
-      "dotnetRunMessages": "true",
-      "applicationUrl": "http://localhost:5010"
+      "dotnetRunMessages": "true"
     }
   }
 }
